@@ -1,0 +1,11 @@
+2026/04/10-16:32:10.268 c91f Reusing MANIFEST /home/liyavr/.config/discord/Local Storage/leveldb/MANIFEST-000001
+2026/04/10-16:32:10.291 c91f Recovering log #632
+2026/04/10-16:32:10.421 c91f Level-0 table #635: started
+2026/04/10-16:32:10.523 c91f Level-0 table #635: 4488595 bytes OK
+2026/04/10-16:32:10.528 c91f Recovering log #635
+2026/04/10-16:32:10.529 c91f Reusing old log /home/liyavr/.config/discord/Local Storage/leveldb/000635.log 
+2026/04/10-16:32:10.536 c91f Delete type=0 #632
+2026/04/10-16:32:10.536 c91f Delete type=2 #636
+2026/04/10-16:43:39.508 c920 Level-0 table #637: started
+2026/04/10-16:43:39.717 c920 Level-0 table #637: 4498358 bytes OK
+2026/04/10-16:43:39.733 c920 Delete type=0 #635

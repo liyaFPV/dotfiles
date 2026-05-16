@@ -1,0 +1,16 @@
+{
+  "offloadAdmControls": true,
+  "enableHardwareAcceleration": true,
+  "chromiumSwitches": {},
+  "BACKGROUND_COLOR": "#121214",
+  "asyncVideoInputDeviceInit": false,
+  "IS_MAXIMIZED": true,
+  "IS_MINIMIZED": false,
+  "openH264Enabled": true,
+  "WINDOW_BOUNDS": {
+    "x": 1374,
+    "y": 40,
+    "width": 1904,
+    "height": 1032
+  }
+}

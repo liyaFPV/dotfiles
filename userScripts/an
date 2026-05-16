@@ -1,0 +1,10 @@
+#скрипт для поиска аниме на сайте old.yummyani.me
+#!/bin/bash
+
+if [ -z "$*" ]; then
+  # если ничего не передано
+  nohup firefox "https://old.yummyani.me" >/dev/null 2>&1 &
+else
+  query=$(echo "$*" | sed 's/ /+/g')
+  nohup firefox "https://old.yummyani.me/search?word=$query" >/dev/null 2>&1 &
+fi

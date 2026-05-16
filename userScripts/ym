@@ -1,0 +1,10 @@
+#скрпит для поиска аудио на youtube music
+#!/bin/bash
+
+if [ -z "$*" ]; then
+  # если ничего не передано
+  nohup firefox "https://music.youtube.com" >/dev/null 2>&1 &
+else
+  query=$(echo "$*" | sed 's/ /+/g')
+  nohup firefox "https://music.youtube.com/search?q=$query" >/dev/null 2>&1 &
+fi
