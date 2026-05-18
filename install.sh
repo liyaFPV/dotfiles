@@ -5,15 +5,24 @@ exec > >(tee -i log.txt) 2>&1
 set -e
 
 echo "=== 1. Подготовка и обновление системы ==="
+# Полное обновление зеркал и пакетов Trixie
 sudo apt update && sudo apt upgrade -y
-sudo apt install -y gnupg software-properties-common curl wget
-sudo add-apt-repository -y ppa:appimagelauncher-team/stable
-curl -fsSL https://download.opensuse.org/repositories/home:AvengeMedia:danklinux/Debian_13/Release.key | \
-  sudo gpg --dearmor -o /etc/apt/keyrings/danklinux.gpg
 
+# Устанавливаем только то, что нужно для Debian (без пакетов для PPA)
+sudo apt install -y gnupg curl wget apt-transport-https
+
+# Создаем правильную и безопасную директорию для ключей сторонних репозиториев
+sudo mkdir -p /etc/apt/keyrings
+
+# Скачиваем ключ danklinux, преобразуем его и сохраняем с правильными правами доступа
+curl -fsSL "https://download.opensuse.org/repositories/home:AvengeMedia:danklinux/Debian_13/Release.key" | \
+  gpg --dearmor | sudo tee /etc/apt/keyrings/danklinux.gpg > /dev/null
+
+# Записываем репозиторий в sources.list.d, ссылаясь на созданный ключ
 echo "deb [signed-by=/etc/apt/keyrings/danklinux.gpg] https://download.opensuse.org/repositories/home:/AvengeMedia:/danklinux/Debian_13/ /" | \
   sudo tee /etc/apt/sources.list.d/danklinux.list
 
+# Обновляем кэш пакетов, теперь система видит пакеты niri, waybar и kitty из danklinux
 sudo apt update
 
 echo "=== 2. Установка пакетов ==="
@@ -27,10 +36,9 @@ sudo apt install -y \
   vlc gimp \
   python3 python3-venv python3-dev \
   tar gzip p7zip-full unzip \
-  firefox \
-  rofi-wayland ffmpeg \
+  rofi ffmpeg \
   zsh \
-  appimagelauncher libfuse2 \
+  libfuse2 \
   pipewire pipewire-audio-client-libraries pipewire-pulse wireplumber pavucontrol xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk \
   niri waybar swaybg xwayland-satellite brightnessctl kitty cliphist eza fzf lsb-release
 
