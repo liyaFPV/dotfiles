@@ -25,7 +25,7 @@ case "$USER_CHOICE" in
         echo "Неверный ввод. Выход."
         exit 1
         ;;
-case
+esac # <-- Исправлено здесь (было 'case')
 
 install_packages_and_soft() {
     echo "=== 1. Подготовка и обновление системы ==="
