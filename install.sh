@@ -153,6 +153,7 @@ update_only_configs() {
     cp -r userScripts/* ~/userScripts/ 2>/dev/null || true
     cp -r config/* ~/.config/ 2>/dev/null || true
     cp -r Wallpapers/* ~/Wallpapers/ 2>/dev/null || true
+    cp -r home/* ~ 2>/dev/null || true
     
     if systemctl --user list-units | grep -q "wireplumber"; then
         systemctl --user --now enable wireplumber.service
