@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Если файлы не переданы, показываем ошибку
+if [ $# -eq 0 ]; then
+    zenity --error --text="Не выбрано ни одного файла!" --title="Ошибка" 2>/dev/null
+    exit 1
+fi
+
+count=0
+
+for file in "$@"
+do
+    if [ -f "$file" ]; then
+        exiftool -all= -ee -overwrite_original "$file"
+        
+        count=$((count + 1))
+    fi
+done
+
+# Итоговое уведомление
+if [ $count -gt 0 ]; then
+    zenity --info --text="Метаданные успешно удалены из $count файл(ов).\nВсе форматы (изображения, документы, скрипты) обработаны." --title="Готово" 2>/dev/null
+else
+    zenity --warning --text="Ни один файл не был изменен." --title="Внимание" 2>/dev/null
+fi
