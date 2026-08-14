@@ -1,0 +1,54 @@
+daemonize
+
+# Скрин + blur
+screenshots
+effect-blur=12x6
+effect-vignette=0.5:0.5
+fade-in=0.2
+
+# Часы
+clock
+timestr=%H:%M
+datestr=%A, %d %B
+
+font=JetBrainsMono Nerd Font
+
+# Индикатор
+indicator
+indicator-radius=120
+indicator-thickness=10
+
+# Цвета
+inside-color=00000088
+ring-color=ffffffaa
+line-color=00000000
+separator-color=00000000
+
+text-color=ffffffff
+text-clear-color=ffffffff
+text-caps-lock-color=ffffffff
+text-ver-color=ffffffff
+text-wrong-color=ffffffff
+
+key-hl-color=cba6f7ff
+bs-hl-color=f38ba8ff
+
+ring-ver-color=89b4faff
+ring-wrong-color=f38ba8ff
+ring-clear-color=f9e2afff
+
+inside-ver-color=00000088
+inside-wrong-color=00000088
+inside-clear-color=00000088
+
+# Позиция текста
+text-ver="Проверка..."
+text-wrong="Неверный пароль"
+
+# Логотип пользователя
+image=/home/$USER/.config/swaylock/avatar.jpg
+image-size=140
+image-crop-position=center
+
+# Расположение
+layout-bg-color=00000000

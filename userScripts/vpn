@@ -7,10 +7,14 @@ if [ -z "$ROUTER_HOST" ] || [ -z "$ROUTER_USER" ] || [ -z "$ROUTER_PASSWORD" ]; 
     exit 1
 fi
 
+<<<<<<< HEAD
 INTERFACE=$(ip route 2>/dev/null | grep '^default' | grep -oP 'dev \K\S+' | head -n1)
 if [ -z "$INTERFACE" ]; then
     INTERFACE=$(ls /sys/class/net | grep -v -E '^(lo|docker|veth|br-|virbr)' | head -n1)
 fi
+=======
+INTERFACE=enp9s0
+>>>>>>> b21e1ac679ec13ec2d214b086504c50adac824b0
 MAC_ADDR=$(cat /sys/class/net/$INTERFACE/address)
 
 COMMAND_VPN_ON="ip hotspot host $MAC_ADDR policy Policy1"

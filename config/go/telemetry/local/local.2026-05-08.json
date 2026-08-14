@@ -1,0 +1,97 @@
+{
+ "Week": "2026-05-08",
+ "LastWeek": "",
+ "X": 0.048792473488871835,
+ "Programs": [
+  {
+   "Program": "cmd/asm",
+   "Version": "go1.26.2",
+   "GoVersion": "go1.26.2",
+   "GOOS": "linux",
+   "GOARCH": "amd64",
+   "Counters": {
+    "asm/flag:D": 93,
+    "asm/flag:I": 93,
+    "asm/flag:gensymabis": 35,
+    "asm/flag:o": 93,
+    "asm/flag:p": 93,
+    "asm/flag:trimpath": 93,
+    "asm/invocations": 93
+   },
+   "Stacks": {}
+  },
+  {
+   "Program": "cmd/cgo",
+   "Version": "go1.26.2",
+   "GoVersion": "go1.26.2",
+   "GOOS": "linux",
+   "GOARCH": "amd64",
+   "Counters": {
+    "cgo/flag:dynimport": 4,
+    "cgo/flag:dynlinker": 1,
+    "cgo/flag:dynout": 4,
+    "cgo/flag:dynpackage": 4,
+    "cgo/flag:import_runtime_cgo": 1,
+    "cgo/flag:import_syscall": 1,
+    "cgo/flag:importpath": 6,
+    "cgo/flag:ldflags": 6,
+    "cgo/flag:objdir": 6,
+    "cgo/invocations": 10
+   },
+   "Stacks": {}
+  },
+  {
+   "Program": "cmd/compile",
+   "Version": "go1.26.2",
+   "GoVersion": "go1.26.2",
+   "GOOS": "linux",
+   "GOARCH": "amd64",
+   "Counters": {
+    "compile/flag:asmhdr": 35,
+    "compile/flag:buildid": 322,
+    "compile/flag:c": 322,
+    "compile/flag:complete": 279,
+    "compile/flag:embedcfg": 4,
+    "compile/flag:goversion": 322,
+    "compile/flag:importcfg": 322,
+    "compile/flag:lang": 322,
+    "compile/flag:nolocalimports": 322,
+    "compile/flag:o": 322,
+    "compile/flag:p": 322,
+    "compile/flag:pack": 322,
+    "compile/flag:std": 206,
+    "compile/flag:symabis": 35,
+    "compile/flag:trimpath": 322,
+    "compile/invocations": 324
+   },
+   "Stacks": {}
+  },
+  {
+   "Program": "cmd/go",
+   "Version": "go1.26.2",
+   "GoVersion": "go1.26.2",
+   "GOOS": "linux",
+   "GOARCH": "amd64",
+   "Counters": {
+    "go/buildcache/hit": 322,
+    "go/buildcache/miss": 324,
+    "go/buildcache/stdlib-recompiled": 1,
+    "go/cgo:enabled": 3,
+    "go/goroot:usr-local-go": 3,
+    "go/invocations": 4,
+    "go/mode:module": 3,
+    "go/platform/host/linux/major-version:6": 3,
+    "go/platform/host/linux/version:6-17": 3,
+    "go/platform/target/goamd64:v1": 3,
+    "go/platform/target/goarch:amd64": 3,
+    "go/platform/target/goos:linux": 3,
+    "go/subcommand:help": 1,
+    "go/subcommand:install": 1,
+    "go/subcommand:run": 1,
+    "go/subcommand:version": 1
+   },
+   "Stacks": {}
+  }
+ ],
+ "Config": "v0.0.0-0"
+}

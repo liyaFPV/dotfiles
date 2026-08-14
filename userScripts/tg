@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 #скрипт для открытия telegram
 #!/bin/bash
 nohup telegram-desktop >/dev/null 2>&1 &
+=======
+#скрипт для открытия telegram из flatpak
+#!/bin/bash
+nohup flatpak run org.telegram.desktop >/dev/null 2>&1 &
+>>>>>>> b21e1ac679ec13ec2d214b086504c50adac824b0
