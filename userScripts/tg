@@ -1,0 +1,3 @@
+#скрипт для открытия telegram
+#!/bin/bash
+nohup telegram-desktop >/dev/null 2>&1 &

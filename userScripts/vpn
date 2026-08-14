@@ -1,0 +1,80 @@
+#!/bin/bash
+
+# Проверяем, заданы ли переменные окружения
+if [ -z "$ROUTER_HOST" ] || [ -z "$ROUTER_USER" ] || [ -z "$ROUTER_PASSWORD" ]; then
+    echo "Ошибка: Переменные окружения ROUTER_HOST, ROUTER_USER или ROUTER_PASSWORD не заданы!"
+    echo "Пожалуйста, добавьте их в свой ~/.bashrc и выполните 'source ~/.bashrc'"
+    exit 1
+fi
+
+INTERFACE=$(ip route 2>/dev/null | grep '^default' | grep -oP 'dev \K\S+' | head -n1)
+if [ -z "$INTERFACE" ]; then
+    INTERFACE=$(ls /sys/class/net | grep -v -E '^(lo|docker|veth|br-|virbr)' | head -n1)
+fi
+MAC_ADDR=$(cat /sys/class/net/$INTERFACE/address)
+
+COMMAND_VPN_ON="ip hotspot host $MAC_ADDR policy Policy1"
+COMMAND_VPN_OFF="ip hotspot host $MAC_ADDR policy Policy0"
+COMMAND_SAVE="system configuration save"
+
+vpn_off() {
+    expect << EOF
+log_user 0
+set timeout 10
+spawn telnet $ROUTER_HOST
+expect -re "(Username:|login:)"
+send "$ROUTER_USER\r"
+expect "Password:"
+send "$ROUTER_PASSWORD\r"
+expect -re "(>|#)"
+send "$COMMAND_VPN_OFF\r"
+expect -re "(>|#)"
+send "$COMMAND_SAVE\r"
+expect -re "(>|#)"
+send "exit\r"
+expect eof
+EOF
+}
+
+vpn_on() {
+    expect << EOF
+log_user 0
+set timeout 10
+spawn telnet $ROUTER_HOST
+expect -re "(Username:|login:)"
+send "$ROUTER_USER\r"
+expect "Password:"
+send "$ROUTER_PASSWORD\r"
+expect -re "(>|#)"
+send "$COMMAND_VPN_ON\r"
+expect -re "(>|#)"
+send "$COMMAND_SAVE\r"
+expect -re "(>|#)"
+send "exit\r"
+expect eof
+EOF
+}
+
+check_argument() {
+    local arg=$(echo "$1" | tr '[:upper:]' '[:lower:]')
+    case "$arg" in
+        0|off)
+            vpn_off
+            ;;
+        1|on)
+            vpn_on
+            ;;
+        "")
+            echo "Ошибка: аргумент не передан!"
+            echo "Использование: $0 [0|1|on|off]"
+            return 1
+            ;;
+        *)
+            echo "Ошибка: неверный аргумент '$1'!"
+            echo "Допустимые значения: 0, 1, on, off"
+            return 1
+            ;;
+    esac
+}
+
+check_argument "$1"
