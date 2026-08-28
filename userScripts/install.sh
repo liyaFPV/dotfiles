@@ -3,7 +3,6 @@
 echo "=== Скрипт настройки и установки зависимостей ==="
 echo ""
 
-<<<<<<< HEAD
 echo "[1/3] Установка зависимостей через sudo..."
 
 if command -v apt-get >/dev/null 2>&1; then
@@ -43,10 +42,6 @@ ensure_installed exiftool    libimage-exiftool-perl perl-image-exiftool    perl-
 ensure_installed zenity      zenity                zenity                  zenity
 ensure_installed swaybg      swaybg                swaybg                  swaybg
 ensure_installed firefox     firefox               firefox                 firefox
-=======
-echo "[1/3] Установка пакетов expect и telnet через sudo..."
-sudo apt-get update && sudo apt-get install -y expect telnet
->>>>>>> b21e1ac679ec13ec2d214b086504c50adac824b0
 
 echo "Зависимости успешно установлены."
 echo ""
@@ -63,8 +58,7 @@ read -s -p "Введите пароль от роутера: " INPUT_PASSWORD
 echo ""
 
 echo ""
-<<<<<<< HEAD
-echo "[3/3] Сохранение переменных в оболочку (bash и zsh)..."
+echo "[3/3] Сохранение переменных в оболочку (fish, bash и zsh)..."
 
 REAL_USER=${SUDO_USER:-$USER}
 if [ "$REAL_USER" = "root" ]; then
@@ -81,37 +75,27 @@ add_to_rc() {
     sed -i "/ROUTER_USER/d" "$RC_FILE"
     sed -i "/ROUTER_PASSWORD/d" "$RC_FILE"
     cat << EOF >> "$RC_FILE"
-=======
-echo "[3/3] Сохранение переменных в ~/.bashrc..."
-
-REAL_USER=${SUDO_USER:-$USER}
-if [ "$REAL_USER" = "root" ]; then
-    BASHRC_PATH="/root/.bashrc"
-else
-    BASHRC_PATH="/home/$REAL_USER/.bashrc"
-fi
-
-touch "$BASHRC_PATH"
-
-sed -i "/ROUTER_HOST/d" "$BASHRC_PATH"
-sed -i "/ROUTER_USER/d" "$BASHRC_PATH"
-sed -i "/ROUTER_PASSWORD/d" "$BASHRC_PATH"
-
-cat << EOF >> "$BASHRC_PATH"
->>>>>>> b21e1ac679ec13ec2d214b086504c50adac824b0
 
 # Настройки для скрипта управления VPN роутера
 export ROUTER_HOST='$INPUT_HOST'
 export ROUTER_USER='$INPUT_USER'
 export ROUTER_PASSWORD='$INPUT_PASSWORD'
 EOF
-<<<<<<< HEAD
 }
+
+mkdir -p "$REAL_HOME/.config/fish"
+touch "$REAL_HOME/.config/fish/config.fish"
+sed -i "/ROUTER_HOST/d; /ROUTER_USER/d; /ROUTER_PASSWORD/d" "$REAL_HOME/.config/fish/config.fish"
+cat << EOF >> "$REAL_HOME/.config/fish/config.fish"
+
+# Настройки для скрипта управления VPN роутера
+set -gx ROUTER_HOST '$INPUT_HOST'
+set -gx ROUTER_USER '$INPUT_USER'
+set -gx ROUTER_PASSWORD '$INPUT_PASSWORD'
+EOF
 
 add_to_rc "$REAL_HOME/.bashrc"
 add_to_rc "$REAL_HOME/.zshrc"
-=======
->>>>>>> b21e1ac679ec13ec2d214b086504c50adac824b0
 
 export ROUTER_HOST="$INPUT_HOST"
 export ROUTER_USER="$INPUT_USER"

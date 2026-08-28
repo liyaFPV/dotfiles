@@ -4,7 +4,7 @@
 	<icon>utilities-terminal</icon>
 	<name>Открыть терминал</name>
 	<unique-id>1779180597950727-1</unique-id>
-	<command>kitty %f</command>
+	<command>ghostty %f</command>
 	<description>Пример особого действия</description>
 	<patterns>*</patterns>
 	<startup-notify/>
